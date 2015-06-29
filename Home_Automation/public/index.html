@@ -1,0 +1,266 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="scotchTodo">
+<head>
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+
+        body {
+            padding-top: 50px;
+        }
+
+        #todo-list {
+            margin-bottom: 30px;
+        }
+
+        .btn-group .dropdown-menu a {
+            color: #000;
+        }
+
+        .btn-default .dropdown-menu {
+            color: #000 !important;
+        }
+
+        .btn-default .dropdown-menu li > a:hover,
+        .btn-default .dropdown-menu li > a:focus {
+            background-color: #000 !important;
+            color: #fff !important;
+        }
+
+        .btn-group-primary .dropdown-menu {
+            background-color: #3784c5 !important;
+        }
+
+        .btn-group-primary .dropdown-menu li > a:hover,
+        .btn-group-primary .dropdown-menu li > a:focus {
+            background-color: #428bca !important;
+        }
+
+        .btn-group-success .dropdown-menu {
+            background-color: #51b351 !important;
+        }
+
+        .btn-group-success .dropdown-menu li > a:hover,
+        .btn-group-success .dropdown-menu li > a:focus {
+            background-color: #5cb85c !important;
+        }
+
+        .btn-group-info .dropdown-menu {
+            background-color: #4ebbdb !important;
+        }
+
+        .btn-group-info .dropdown-menu li > a:hover,
+        .btn-group-info .dropdown-menu li > a:focus {
+            background-color: #5bc0de !important;
+        }
+
+        .btn-group-warning .dropdown-menu {
+            background-color: #efa640 !important;
+        }
+
+        .btn-group-warning .dropdown-menu li > a:hover,
+        .btn-group-warning .dropdown-menu li > a:focus {
+            background-color: #f0ad4e !important;
+        }
+
+        .btn-group-danger .dropdown-menu {
+            background-color: #d64742 !important;
+        }
+
+        .btn-group-danger .dropdown-menu li > a:hover,
+        .btn-group-danger .dropdown-menu li > a:focus {
+            background-color: #d9534f !important;
+        }
+    </style>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Optimize mobile viewport -->
+
+    <title>Node/Angular Todo App</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <!-- load bootstrap -->
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <!-- load angular -->
+    <script src="core.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS -->
+<body ng-controller="mainController">
+<div class="container">
+    <div class="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand text-uppercase" href="#">House Management</a>
+                    <!--<span class="label label-success text-capitalize">Free</span>-->
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navigation">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Home appliances</a></li>
+                        <li><a href="#">Alarm system</a></li>
+                        <!--<li><button type="button" class="btn btn-success navbar-btn btn-circle">Sign in</button></li>-->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <section class="section">
+            <div role="main" class="container theme-showcase">
+
+                <div class="page-header">
+                    <h1>Appliances</h1>
+                </div>
+                <p>
+                </p>
+
+                <div ng-repeat="appliance in home.appliances">
+                    <h3>{{appliance.applianceName}}</h3>
+
+                    <div class="btn-group" ng-class="{'btn-group-success': appliance.applianceState == 'On', 'btn-group-danger': appliance.applianceState == 'Off'}">
+                        <button class="btn"  ng-class="{'btn-success': appliance.applianceState == 'On', 'btn-danger': appliance.applianceState == 'Off'}" type="button">{{appliance.applianceState}}</button>
+                        <button data-toggle="dropdown" class="btn dropdown-toggle" ng-class="{'btn-success': appliance.applianceState == 'On', 'btn-danger': appliance.applianceState == 'Off'}" type="button"><span
+                                class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" ng-click="appliance.applianceState = 'On'">On</a></li>
+                            <li><a href="#" ng-click="appliance.applianceState = 'Off'">Off</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--<div class="btn-group btn-group-primary">-->
+                    <!--<button class="btn btn-primary" type="button">Primary</button>-->
+                    <!--<button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button"><span-->
+                            <!--class="caret"></span>-->
+                    <!--</button>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#">Action</a></li>-->
+                        <!--<li><a href="#">Another action</a></li>-->
+                        <!--<li><a href="#">Something else here</a></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><a href="#">Separated link</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+
+                <!--<div class="btn-group btn-group-success">-->
+                    <!--<button class="btn btn-success" type="button">Success</button>-->
+                    <!--<button data-toggle="dropdown" class="btn btn-success dropdown-toggle" type="button"><span-->
+                            <!--class="caret"></span>-->
+                    <!--</button>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#">Action</a></li>-->
+                        <!--<li><a href="#">Another action</a></li>-->
+                        <!--<li><a href="#">Something else here</a></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><a href="#">Separated link</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+
+                <!--<div class="btn-group btn-group-info">-->
+                    <!--<button class="btn btn-info" type="button">Info</button>-->
+                    <!--<button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button"><span-->
+                            <!--class="caret"></span>-->
+                    <!--</button>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#">Action</a></li>-->
+                        <!--<li><a href="#">Another action</a></li>-->
+                        <!--<li><a href="#">Something else here</a></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><a href="#">Separated link</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+
+                <!--<div class="btn-group btn-group-warning">-->
+                    <!--<button class="btn btn-warning" type="button">Warning</button>-->
+                    <!--<button data-toggle="dropdown" class="btn btn-warning dropdown-toggle" type="button"><span-->
+                            <!--class="caret"></span>-->
+                    <!--</button>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#">Action</a></li>-->
+                        <!--<li><a href="#">Another action</a></li>-->
+                        <!--<li><a href="#">Something else here</a></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><a href="#">Separated link</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+                <!--<div class="btn-group btn-group-danger">-->
+                    <!--<button class="btn btn-danger" type="button">Danger</button>-->
+                    <!--<button data-toggle="dropdown" class="btn btn-danger dropdown-toggle" type="button"><span-->
+                            <!--class="caret"></span>-->
+                    <!--</button>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#">Action</a></li>-->
+                        <!--<li><a href="#">Another action</a></li>-->
+                        <!--<li><a href="#">Something else here</a></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><a href="#">Separated link</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+                <!--<p></p>-->
+
+            </div>
+        </section>
+    </div>
+
+    <!-- HEADER AND TODO COUNT -->
+    <div class="jumbotron text-center">
+        <h1>I'm a Todo-aholic <span class="label label-info">{{ todos.length }}</span></h1>
+    </div>
+
+    <!-- TODO LIST -->
+    <div id="todo-list" class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+
+            <!-- LOOP OVER THE TODOS IN $scope.todos -->
+            <div class="checkbox" ng-repeat="todo in todos">
+                <label>
+                    <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
+                </label>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FORM TO CREATE TODOS -->
+    <div id="todo-form" class="row">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+            <form>
+                <div class="form-group">
+
+                    <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                    <input type="text" class="form-control input-lg text-center"
+                           placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
+                </div>
+
+                <!-- createToDo() WILL CREATE NEW TODOS -->
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
